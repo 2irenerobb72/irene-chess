@@ -4,6 +4,26 @@ const Board = require('./board')
 const Logic = require('./logic')
 const io = require('socket.io').appListen('localhost:3000')
 
+class App {
+  this.state =
+}
+class Board extends App {
+
+}
+class Moves extends Board {
+  
+}
+
+
+
+
+
+
+
+
+
+
+
 $('#new-game').on('submit', (e) => {
   e.preventDefault()
   let gameName = $('#new-game input[name=name]').val()
@@ -68,6 +88,8 @@ socket.once('connect', function () {
     socket.emit('switchRoom', room)
   })
 })
+
+
 
 
 const pieces = {
