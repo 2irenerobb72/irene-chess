@@ -1,5 +1,5 @@
 'use strict'
-const R = require ('ramda')
+const R = require('ramda')
 const $ = require('jquery')
 
 
@@ -65,6 +65,7 @@ const pieces = {
  }
 
 module.exports = {
-  buildBoard: buildBoard,
-  makeStartingBoard: makeStartingBoard
+  buildBoard,
+  makeStartingBoard,
+  renderBoard
 }

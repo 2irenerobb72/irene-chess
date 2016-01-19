@@ -1,27 +1,28 @@
+'use strict'
 const $ = require('jquery')
-const board = require('./board.js')
-const logic = require('./logic.js')
+const Board = require('./board')
+const Logic = require('./logic')
 
 //SOCKET ROOMS
-const socket = io.connect('localhost:8000')
-socket.emit('create', 'Lobby')
-var room = $('input').data('room')
-var player = new Player(room, '', '')
-
-socket.once('connect', function () {
-  if (localUser) socket.emit('newUser', localUser)
-
-  socket.on('updateUsers', (data) => {
-    $('#users').test('')
-    socket.emit('join', {room: room})
-  })
-  socket.on('disconnect', (data) => {
-    localUser = undefined$('.cust-modal').show()
-  })
-  socket.on('switchRoom', (room) {
-    socket.emit('switchRoom', room)
-  })
-})
+// const socket = io.connect('localhost:8000')
+// socket.emit('create', 'Lobby')
+// var room = $('input').data('room')
+// var player = new Player(room, '', '')
+//
+// socket.once('connect', function () {
+//   if (localUser) socket.emit('newUser', localUser)
+//
+//   socket.on('updateUsers', (data) => {
+//     $('#users').test('')
+//     socket.emit('join', {room: room})
+//   })
+//   socket.on('disconnect', (data) => {
+//     localUser = undefined$('.cust-modal').show()
+//   })
+//   socket.on('switchRoom', (room) => {
+//     socket.emit('switchRoom', room)
+//   })
+// })
 
 
 $('#new-game').on('submit', (e) => {
@@ -31,11 +32,11 @@ $('#new-game').on('submit', (e) => {
 
 })
 
-var board = makeStartingBoard(buildBoard())
-renderBoard(board)
+var board = Board.makeStartingBoard(Board.buildBoard())
+Board.renderBoard(board)
 
 $('.btn-restart').on('click', function(e){
-  board = makeStartingBoard(buildBoard())
+  board = Board.makeStartingBoard(Board.buildBoard())
   renderNew(board)
 })
 
@@ -44,7 +45,7 @@ $('.square').on('click', function(e){
   if(fromSpace && toSpace) {
     var fromCor = [parseInt($(fromSpace).attr('data-row')), parseInt($(fromSpace).attr('data-col'))]
     var toCor = [parseInt($(toSpace).attr('data-row')), parseInt($(toSpace).attr('data-col'))]
-    board = makeMove(board, 'blah', fromCor, toCor)
+    board = Logic.makeMove(board, 'blah', fromCor, toCor)
     renderNew(board)
     fromSpace = undefined
     toSpace = undefined

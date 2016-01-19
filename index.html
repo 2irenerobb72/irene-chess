@@ -8,14 +8,14 @@
     <title>Chess, Baby</title>
 
     <link rel="icon" href="favicon.ico">
-<!--
+
     <script src="jspm_packages/system.js"></script>
     <script src="config.js"></script>
     <script>
-      System.import('js/main.js')
-    </script> -->
+      System.import('app/js/main.js')
+    </script>
 
-    <link rel="stylesheet" href="/styles/app.css">
+    <link rel="stylesheet" href="app/styles/app.css">
   </head>
   <body>
     <form id="new-game">
@@ -23,8 +23,7 @@
       <input type="submit" value="submit"></input>
     </form>
     <div class ="container">
-      <div id="board">
-      </div>
+      <div id="board"></div>
     </div>
     <div id="restart">
     <button class="btn btn-restart" type="button">Restart</button>

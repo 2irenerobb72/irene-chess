@@ -75,8 +75,8 @@ const checkRoute = (board, place, to) => {
 }
 
 module.exports = {
-  makeMove: makeMove,
-  legalMove: legalMove,
-  placePiece: placePiece,
-  checkIfOccupied: checkIfOccupied
+  makeMove,
+  legalMove,
+  placePiece,
+  checkIfOccupied
 }
