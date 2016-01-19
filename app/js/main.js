@@ -2,34 +2,12 @@
 const $ = require('jquery')
 const Board = require('./board')
 const Logic = require('./logic')
-
-//SOCKET ROOMS
-// const socket = io.connect('localhost:8000')
-// socket.emit('create', 'Lobby')
-// var room = $('input').data('room')
-// var player = new Player(room, '', '')
-//
-// socket.once('connect', function () {
-//   if (localUser) socket.emit('newUser', localUser)
-//
-//   socket.on('updateUsers', (data) => {
-//     $('#users').test('')
-//     socket.emit('join', {room: room})
-//   })
-//   socket.on('disconnect', (data) => {
-//     localUser = undefined$('.cust-modal').show()
-//   })
-//   socket.on('switchRoom', (room) => {
-//     socket.emit('switchRoom', room)
-//   })
-// })
-
+const io = require('socket.io').appListen('localhost:3000')
 
 $('#new-game').on('submit', (e) => {
   e.preventDefault()
   let gameName = $('#new-game input[name=name]').val()
   $.post('http://localhost:3000/games', {name: gameName})
-
 })
 
 var board = Board.makeStartingBoard(Board.buildBoard())
@@ -69,6 +47,28 @@ const renderNew = (board) => {
     $(this).find('div').removeClass().addClass(board[index]).html(pieces[board[index]].code)
   })
 }
+
+
+
+socket.emit('create', 'Lobby')
+var room = $('input').data('room')
+var player = new Player(room, '', '')
+
+socket.once('connect', function () {
+  if (localUser) socket.emit('newUser', localUser)
+
+  socket.on('updateUsers', (data) => {
+    $('#users').test('')
+    socket.emit('join', {room: room})
+  })
+  socket.on('disconnect', (data) => {
+    localUser = undefined$('.cust-modal').show()
+  })
+  socket.on('switchRoom', (room) => {
+    socket.emit('switchRoom', room)
+  })
+})
+
 
 const pieces = {
   empty : {name: "None", code: "O"},
